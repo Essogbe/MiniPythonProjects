@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import random
+import os
 
 class Game:
     def __init__(self):
@@ -78,9 +79,15 @@ class Game:
             pass
 
     def save_player_data(self):
-        with open(self.player_data_file, 'w') as file:
-            for name, score in self.high_scores.items():
-                file.write(f"{name},{self.level},{score}\n")
+        if os.path.exists(self.player_data_file):
+            with open(self.player_data_file, 'a') as file:
+                for name, score in self.high_scores.items():
+                    file.write(f"{name},{self.level},{score}\n")
+        else:
+            with open(self.player_data_file, 'w') as file:
+                for name, score in self.high_scores.items():
+                    file.write(f"{name},{self.level},{score}\n")
+            
 
     def update_level(self):
         
