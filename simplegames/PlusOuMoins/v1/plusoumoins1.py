@@ -138,6 +138,8 @@ class Game:
             again = input("Voulez-vous rejouer ? [o/n]\n>>> ").lower()
             if again != 'o':
                 break
+            else:
+                self.save_player_data()
 
         self.display_high_scores()
         self.save_player_data()
